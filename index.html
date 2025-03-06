@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BloodBank Connect</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+        .neo-box {
+            border-radius: 20px;
+            background: #f0f0f0;
+            box-shadow: 20px 20px 60px #cccccc, -20px -20px 60px #ffffff;
+        }
+        .neo-button {
+            border-radius: 10px;
+            background: #f0f0f0;
+            box-shadow: 5px 5px 15px #cccccc, -5px -5px 15px #ffffff;
+            transition: all 0.3s ease;
+        }
+        .neo-button:active {
+            box-shadow: inset 5px 5px 15px #cccccc, inset -5px -5px 15px #ffffff;
+        }
+        .hide {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <nav class="p-4 neo-box m-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center">
+                <i class="bi bi-droplet-fill text-red-500 text-3xl"></i>
+                <h1 class="text-2xl font-bold ml-2">BloodBank Connect</h1>
+            </div>
+            <div class="space-x-4">
+                <button onclick="showSection('home')" class="neo-button px-4 py-2">Home</button>
+                <button onclick="showSection('login')" class="neo-button px-4 py-2">Login</button>
+                <button onclick="showSection('register')" class="neo-button px-4 py-2">Register</button>
+                <button onclick="showSection('admin')" class="neo-button px-4 py-2">Admin</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="container mx-auto p-4">
+        <div class="grid md:grid-cols-2 gap-8">
+            <div class="neo-box p-8">
+                <h2 class="text-3xl font-bold mb-4">Save Lives Today</h2>
+                <p class="mb-4">Join our blood donation community and help save lives. Your contribution matters!</p>
+                <div class="grid grid-cols-2 gap-4 mt-8">
+                    <div class="text-center">
+                        <i class="bi bi-people-fill text-4xl text-blue-500"></i>
+                        <p class="mt-2">1000+ Donors</p>
+                    </div>
+                    <div class="text-center">
+                        <i class="bi bi-heart-fill text-4xl text-red-500"></i>
+                        <p class="mt-2">500+ Lives Saved</p>
+                    </div>
+                </div>
+            </div>
+            <div class="neo-box p-8">
+                <img src="https://source.unsplash.com/random/800x600/?blood,donation" alt="Blood Donation" class="rounded-lg w-full">
+            </div>
+        </div>
+    </section>
+
+    <!-- Login Section -->
+    <section id="login" class="container mx-auto p-4 hide">
+        <div class="max-w-md mx-auto neo-box p-8">
+            <h2 class="text-2xl font-bold mb-4">Login</h2>
+            <form onsubmit="handleLogin(event)">
+                <div class="mb-4">
+                    <label class="block mb-2">Email</label>
+                    <input type="email" required class="w-full p-2 rounded neo-box" id="loginEmail">
+                </div>
+                <div class="mb-4">
+                    <label class="block mb-2">Password</label>
+                    <input type="password" required class="w-full p-2 rounded neo-box" id="loginPassword">
+                </div>
+                <button type="submit" class="neo-button px-4 py-2 w-full">Login</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Register Section -->
+    <section id="register" class="container mx-auto p-4 hide">
+        <div class="max-w-md mx-auto neo-box p-8">
+            <h2 class="text-2xl font-bold mb-4">Register</h2>
+            <form onsubmit="handleRegister(event)">
+                <div class="mb-4">
+                    <label class="block mb-2">Full Name</label>
+                    <input type="text" required class="w-full p-2 rounded neo-box">
+                </div>
+                <div class="mb-4">
+                    <label class="block mb-2">Email</label>
+                    <input type="email" required class="w-full p-2 rounded neo-box">
+                </div>
+                <div class="mb-4">
+                    <label class="block mb-2">Blood Group</label>
+                    <select class="w-full p-2 rounded neo-box">
+                        <option>A+</option>
+                        <option>A-</option>
+                        <option>B+</option>
+                        <option>B-</option>
+                        <option>O+</option>
+                        <option>O-</option>
+                        <option>AB+</option>
+                        <option>AB-</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label class="block mb-2">Password</label>
+                    <input type="password" required class="w-full p-2 rounded neo-box">
+                </div>
+                <button type="submit" class="neo-button px-4 py-2 w-full">Register</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Admin Section -->
+    <section id="admin" class="container mx-auto p-4 hide">
+        <div class="max-w-md mx-auto neo-box p-8">
+            <h2 class="text-2xl font-bold mb-4">Admin Login</h2>
+            <form onsubmit="handleAdminLogin(event)">
+                <div class="mb-4">
+                    <label class="block mb-2">Username</label>
+                    <input type="text" required class="w-full p-2 rounded neo-box" id="adminUsername">
+                </div>
+                <div class="mb-4">
+                    <label class="block mb-2">Password</label>
+                    <input type="password" required class="w-full p-2 rounded neo-box" id="adminPassword">
+                </div>
+                <button type="submit" class="neo-button px-4 py-2 w-full">Login</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Admin Dashboard -->
+    <section id="adminDashboard" class="container mx-auto p-4 hide">
+        <div class="neo-box p-8">
+            <h2 class="text-2xl font-bold mb-4">Admin Dashboard</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="neo-box p-4">
+                    <h3 class="text-xl font-bold mb-4">Recent Donors</h3>
+                    <div class="space-y-4">
+                        <div class="p-4 neo-box">
+                            <p class="font-bold">John Doe</p>
+                            <p>Blood Group: A+</p>
+                            <p>Date: 2023-12-01</p>
+                        </div>
+                        <!-- More donor entries -->
+                    </div>
+                </div>
+                <div class="neo-box p-4">
+                    <h3 class="text-xl font-bold mb-4">Blood Stock</h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="p-4 neo-box text-center">
+                            <p class="font-bold">A+</p>
+                            <p>10 units</p>
+                        </div>
+                        <!-- More blood stock entries -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function showSection(sectionId) {
+            document.querySelectorAll('section').forEach(section => {
+                section.classList.add('hide');
+            });
+            document.getElementById(sectionId).classList.remove('hide');
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+            alert('Login successful!');
+        }
+
+        function handleRegister(event) {
+            event.preventDefault();
+            alert('Registration successful!');
+        }
+
+        function handleAdminLogin(event) {
+            event.preventDefault();
+            const username = document.getElementById('adminUsername').value;
+            const password = document.getElementById('adminPassword').value;
+            
+            if (username === 'Hemit' && password === '1409') {
+                document.getElementById('admin').classList.add('hide');
+                document.getElementById('adminDashboard').classList.remove('hide');
+            } else {
+                alert('Invalid admin credentials!');
+            }
+        }
+
+        // Show home section by default
+        showSection('home');
+    </script>
+<script>document.body.addEventListener('wheel', e => { if (!e.ctrlKey) return; e.preventDefault(); return }, { passive: false })</script>
+	</body>
+</html>
